@@ -19,5 +19,12 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.8.3",
     "nodemon": "^3.1.7"
+  },
+  "devDependencies": {
+    "ejs-loader": "^0.5.0",
+    "esbuild": "^0.24.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
