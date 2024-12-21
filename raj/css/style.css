@@ -602,7 +602,7 @@ ul.btn li:last-child {
      position: relative;
 }
 
-.choose::after {
+/* .choose::after {
      position: absolute;
      content: "";
      bottom: 0;
@@ -613,7 +613,7 @@ ul.btn li:last-child {
      background-repeat: no-repeat;
      display: block;
      background-position: center center;
-}
+} */
 
 .choose .titlepage {
      text-align: left;
@@ -833,9 +833,12 @@ ul.btn li:last-child {
 /** footer **/
 
 .footer {
-     background: #212121;
+     background: #ffffff;
      padding-top: 85px;
      text-align: center;
+     border-top: #000 solid 1px;
+     border-right: #000 solid 1px;
+     border-left: #000 solid 1px;
 }
 
 .footer .titlepage {
@@ -844,7 +847,7 @@ ul.btn li:last-child {
 }
 
 .footer .titlepage h2 {
-     color: #fff;
+     color: #000;
 }
 
 .main_form {
@@ -858,10 +861,13 @@ ul.btn li:last-child {
      width: 100%;
      height: 45px;
      background: #ffffff;
-     color: #777977;
+     color: #000000;
      font-size: 18px;
      font-weight: normal;
-     border-bottom: #ddd solid 1px;
+     border-bottom:#000 solid 1px;
+     border-top: #000 solid 1px;
+     border-left:#000 solid 1px;
+     border-right:#000 solid 1px;
 }
 
 .main_form .contactus1 {
@@ -872,27 +878,34 @@ ul.btn li:last-child {
      width: 100%;
      height: 80px;
      background: #ffffff;
-     color: #777977;
+     color: #6a6767;
      font-size: 18px;
      font-weight: normal;
-     border-bottom: #ddd solid 1px;
+     border-bottom:#000 solid 1px;
+     border-top: #000 solid 1px;
+     border-left:#000 solid 1px;
+     border-right:#000 solid 1px;
 }
 
 .main_form .send_btn {
      font-size: 20px;
      transition: ease-in all 0.5s;
-     background-color: #f4cb1e;
+     background-color: transparent;
+     /* background-color: #f4cb1e; */
      color: #000;
      padding: 16px 0px;
      max-width: 333px;
      font-weight: 700;
      width: 100%;
-     display: block;
+     display: inline-block;
+     border-radius: 30px;
+     text-align: center;
      margin-top: 11px;
+     border: #00f936 solid 4px;
 }
 
 .main_form .send_btn:hover {
-     background-color: #fff;
+     background-color: #c8ffa3;
      transition: ease-in all 0.5s;
      color: #000;
 }
@@ -911,7 +924,7 @@ ul.social_icon li {
 }
 
 ul.social_icon li a {
-     background: #fff;
+     background: #54f169;
      width: 40px;
      height: 40px;
      display: flex;
@@ -923,7 +936,7 @@ ul.social_icon li a {
 }
 
 ul.social_icon li a:hover {
-     background-color: #f4cb1e;
+     background-color: #000;
      color: #fff;
 }
 
@@ -931,7 +944,7 @@ ul.social_icon li a:hover {
      font-weight: 600;
      font-size: 22px;
      text-align: left;
-     color: #fff;
+     color: #000;
      padding-bottom: 15px;
 }
 
@@ -944,26 +957,26 @@ ul.location_icon li {
      display: inline-block;
      font-size: 18px;
      line-height: 20px;
-     color: #fff;
+     color: #000;
      padding-bottom: 25px;
 }
 
 ul.location_icon li a {
      font-size: 30px;
-     color: #fff;
+     color: #54f169;
      line-height: 30px;
      padding-right: 15px;
 }
 
 ul.location_icon li a:hover {
-     color: #00ff00;
+     color: #000;
 }
 
 .footer h3 {
      font-weight: 600;
      font-size: 22px;
      text-align: left;
-     color: #fff;
+     color: #000;
      padding-bottom: 15px;
 }
 
@@ -972,7 +985,7 @@ ul.link {
 }
 
 ul.link li a {
-     color: #fff;
+     color: #000;
      font-size: 17px;
      line-height: 20px;
      padding-bottom: 15px;
@@ -981,7 +994,7 @@ ul.link li a {
 }
 
 ul.link li a:hover {
-     color: #f4cb1e;
+     color: #54f169;
 }
 
 ul.link li a::after {
@@ -989,7 +1002,7 @@ ul.link li a::after {
      content: "";
      width: 12px;
      height: 12px;
-     background-color: #fff;
+     background-color: #000;
      border-radius: 20px;
      left: 0;
      margin-top: 6px;
@@ -997,7 +1010,7 @@ ul.link li a::after {
 }
 
 .border_right {
-     border-right: #fff solid 1px;
+     border-right:#000 solid 1px;
 }
 
 .bottom_form .enter {
@@ -1009,24 +1022,32 @@ ul.link li a::after {
      color: #000;
      font-size: 18px;
      font-weight: 600;
+     border-bottom:#000 solid 1px;
+     border-top: #000 solid 1px;
+     border-left:#000 solid 1px;
+     border-right:#000 solid 1px;
 }
+
 
 .sub_btn {
      font-size: 17px;
      transition: ease-in all 0.5s;
-     background-color: #f4cb1e;
-     color: #fff;
+     background-color: transparent;
+     /* background-color: #f4cb1e; */
+     color: #000;
+     border-radius: 30px;
      padding: 11px 0px;
      max-width: 200px;
      width: 100%;
-     display: block;
+     display: inline-block;
      font-weight: 500;
      text-transform: uppercase;
      margin-top: 20px;
+     border: #00f936 solid 4px;
 }
 
 .sub_btn:hover {
-     background-color: #fff;
+     background-color: #c8ffa3;
      transition: ease-in all 0.5s;
      color: #000;
 }
@@ -1034,7 +1055,7 @@ ul.link li a::after {
 .copyright {
      margin-top: 70px;
      padding: 20px 0px;
-     background-color: #f4cb1e;
+     background-color: #2a2828;
 }
 
 .copyright p {
@@ -1058,4 +1079,7 @@ ul.link li a::after {
 .products_page .product .titlepage {
      margin-top: 70px;
 }
+
+
+
 
