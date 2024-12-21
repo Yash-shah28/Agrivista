@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="row mt-3">
+
+    <h3 class="col-6 offset-3">Signup on Wanderlust</h3>
+    <div class="col-6 offset-3">
+        <form action="/predict" method="post" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="N" class="form-label">Nitrogen</label>
+                <input type="text" id="N" name="N" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid N.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="P" class="form-label">Phosporous</label>
+                <input type="text" id="P" name="P" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid Phosporous.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="K" class="form-label">Photasium</label>
+                <input type="text" id="K" name="K" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid N.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="temperature" class="form-label">temperature</label>
+                <input type="text" id="temperature" name="temperature" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid temperature.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="humidity" class="form-label">humidity</label>
+                <input type="text" id="humidity" name="humidity" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid humidity.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ph" class="form-label">ph</label>
+                <input type="text" id="ph" name="ph" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid ph.
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="rainfall" class="form-label">rainfall</label>
+                <input type="text" id="rainfall" name="rainfall" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid rainfall.
+                </div>
+            </div>
+            <button class="btn btn-success">Predict</button>
+
+        </form>
+    </div>
+</div>
