@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Div Layout</title>
+   <style>
+    /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right: 2px solid #34495e;
+    height: 100%;
+    box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+}
+
+.sidebar:hover {
+    width: 300px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+.sidebar ul li.active {
+    background-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+
+/* Sidebar Icons */
+.sidebar ul li.icon {
+    display: flex;
+    align-items: center;
+}
+
+/* Display Section Styles */
+.display {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1;
+}
+
+.display iframe {
+    width: 80%;
+    height: 80%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Info Box Styles */
+.info-box {
+    width: 30%;
+    background-color: #ecf0f1;
+    border-left: 2px solid #bdc3c7;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    color: #2c3e50;
+    position: relative;
+}
+
+.info-box p {
+    opacity: 1;
+    transition: opacity 1s ease-in-out; /* Smooth fade-in and fade-out */
+}
+
+   </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li class="icon active" data-model="rice" data-info="Rice cultivation requires hot, humid conditions with temperatures of 20–35°C."><i class="fas fa-home"></i> Rice</li>
+                <li class="icon" data-model="cabbage" data-info="Cabbage requires cool, moist conditions with temperatures of 15–20°C."><i class="fas fa-info-circle"></i> Cabbage</li>
+                <li class="icon" data-model="watermelon" data-info="Watermelon grows best in hot, sunny conditions with temperatures of 25–35°C."><i class="fas fa-cogs"></i> Watermelon</li>
+                <li class="icon" data-model="wheat" data-info="Wheat cultivation requires moderate temperatures of 15–20°C."><i class="fas fa-phone-alt"></i> Wheat</li>
+            </ul>
+        </div>
+
+        <!-- Display Section -->
+        <div class="display">
+            <iframe id="3d-model" title="3D Model Display" frameborder="0" allowfullscreen
+                src="https://sketchfab.com/models/02849731fe31486ca2eff1243455a6e9/embed">
+            </iframe>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <p id="info-text">Rice cultivation requires hot, humid conditions with temperatures of 20–35°C.</p>
+        </div>
+    </div>
+
+    <script>
+        // Array of info texts for each plant
+        const infoData = {
+            rice: {
+                model: "https://sketchfab.com/models/02849731fe31486ca2eff1243455a6e9/embed", // Example link for rice model
+                info: [
+                    "Rice cultivation requires hot, humid conditions with temperatures of 20–35°C.",
+                    "Maintain 5–10 cm of standing water during growth and drain before harvest.",
+                    "Harvest when grains turn golden yellow for best results.",
+                    "Use fertilizers and pest control as needed for optimal yield."
+                ]
+            },
+            cabbage: {
+                model: "https://sketchfab.com/models/xxx/embed", // Replace with actual Cabbage model link
+                info: [
+                    "Cabbage requires cool, moist conditions with temperatures of 15–20°C.",
+                    "Cabbage is harvested when the head is firm and compact.",
+                    "Cabbage grows best in fertile, well-drained soil."
+                ]
+            },
+            watermelon: {
+                model: "https://sketchfab.com/models/yyy/embed", // Replace with actual Watermelon model link
+                info: [
+                    "Watermelon grows best in hot, sunny conditions with temperatures of 25–35°C.",
+                    "Watermelon needs well-drained soil with high organic matter.",
+                    "Watermelon requires regular watering but should not be over-watered."
+                ]
+            },
+            wheat: {
+                model: "https://sketchfab.com/models/zzz/embed", // Replace with actual Wheat model link
+                info: [
+                    "Wheat cultivation requires moderate temperatures of 15–20°C.",
+                    "Wheat is usually harvested when the grains are fully ripe and hard.",
+                    "Wheat needs well-drained soil and a consistent water supply."
+                ]
+            }
+        };
+
+        // Function to update the display and info box
+        function updateContent(modelKey) {
+            // Update iframe source for 3D model
+            const iframe = document.getElementById('3d-model');
+            iframe.src = infoData[modelKey].model;
+
+            // Update info box text and set up interval for changing text every 2 seconds
+            const infoTextElement = document.getElementById('info-text');
+            const infoTexts = infoData[modelKey].info;
+            let currentIndex = 0;
+
+            // Function to change the text with smooth fade effect
+            function changeInfoText() {
+                // Fade out the current text
+                infoTextElement.style.opacity = 0;
+
+                // After fading out, update the text and fade it back in
+                setTimeout(() => {
+                    infoTextElement.textContent = infoTexts[currentIndex];
+                    infoTextElement.style.opacity = 1; // Fade in
+                    
+                    currentIndex = (currentIndex + 1) % infoTexts.length; // Loop through the info texts
+                }, 500); // Delay to allow the fade-out effect
+            }
+
+            // Update the text every 2 seconds
+            setInterval(changeInfoText, 2000);
+
+            // Change the initial text immediately
+            changeInfoText();
+
+            // Update the active state of sidebar items
+            const sidebarItems = document.querySelectorAll('.sidebar ul li');
+            sidebarItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`.sidebar ul li[data-model="${modelKey}"]`).classList.add('active');
+        }
+
+        // Add click event listener for sidebar items
+        const sidebarItems = document.querySelectorAll('.sidebar ul li');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const modelKey = item.getAttribute('data-model');
+                updateContent(modelKey);
+            });
+        });
+
+        // Initialize with the first item (Rice)
+        updateContent('rice');
+    </script>
+</body>
+
+</html>

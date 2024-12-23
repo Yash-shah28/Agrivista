@@ -43,6 +43,14 @@ app.get('/crop_prediction',(req,res)=>{
   res.render('cropprediction.ejs');
 });
 
+app.get("/simulate",(req,res)=>{
+  res.render("cropvisualization")
+})
+
+app.get('/x',(req,res)=>{
+  res.render('predict.ejs',{data})
+})
+
 app.post('/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
   // console.log(N,P,K,temperature,humidity,ph,rainfall)
@@ -51,8 +59,9 @@ app.post('/predict',(req,res)=>{
   const childPython = spawn('python',[pythonscript, JSON.stringify(obj)])
 
 childPython.stdout.on('data',(data)=>{
+  
     console.log(`stdout: ${data}`)
-    res.send(`${data}`)
+    res.render('predict.ejs',{data})
 });
 
 childPython.stderr.on('data',(data)=>{

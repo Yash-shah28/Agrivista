@@ -32,6 +32,7 @@ rainfall = float(rainfall)
 model = pickle.load(open('D:/Full stack Projects/Agrivista/src/utils/DecisionTree.pkl', 'rb'))
 # print("Model loaded successfully.", file=sys.stderr)
 prediction = model.predict([[N, P, K, temperature, humidity, ph, rainfall]])
-print(prediction[0])
+pred = str(prediction[0])
+print(pred)
     # # Return the prediction as JSON on stdout
     # print(json.dumps({'prediction': prediction[0]}))
