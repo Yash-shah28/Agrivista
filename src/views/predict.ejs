@@ -30,37 +30,42 @@
     <style>
         h1 {
             font-size: 45px;
-            font-weight: 500; 
+            font-weight: 500;
             text-align: center;
-            color: #2c3e50; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); 
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
         }
-        .model{
-            display: flex; 
-            align-items: center; 
-            margin: 20px; 
+
+        .model {
+            display: flex;
+            align-items: center;
+            margin: 20px;
             font-family: Arial, sans-serif;
 
         }
+
         .sketchfab-embed-wrapper {
             flex: 1;
             max-width: 50%;
 
         }
-        iframe{
-            height: 500px; 
-            width: 100%; 
-            max-width: 500px; 
-            border: 2px solid #ccc; 
-            border-radius: 10px; 
+
+        iframe {
+            height: 500px;
+            width: 100%;
+            max-width: 500px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
         }
+
         .text-box {
-            flex: 1; 
+            flex: 1;
             padding-left: 20px;
             max-width: 50%;
         }
+
         .para {
             font-size: 18px;
             line-height: 1.8;
@@ -139,141 +144,152 @@
     <!-- end header inner -->
     <!-- end header -->
 
-    <% if (data === "rice" ) { %>
-        <b>
-            <h1>Rice</h1>
-        </b>
-        <div class="model">
-            <!-- Iframe on the left -->
-            <div class="sketchfab-embed-wrapper">
-                <iframe  frameborder="0" allowfullscreen mozallowfullscreen="true"
-                    webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
-                    execution-while-out-of-viewport execution-while-not-rendered web-share
-                    src="https://sketchfab.com/models/02849731fe31486ca2eff1243455a6e9/embed"></iframe>
-            </div>
-            <!-- Paragraph on the right -->
-            <div class="text-box">
-                <p class="para"> 
-                    Rice cultivation requires hot, humid conditions with temperatures of 20–35°C, annual rainfall of
-                    100–200
-                    cm,
-                    and fertile clayey or loamy soil. Prepare the field by plowing and leveling, then sow seeds or
-                    transplant
-                    seedlings with proper spacing. Maintain 5–10 cm of standing water during growth and drain before
-                    harvest.
-                    Use fertilizers and pest control as needed, and harvest when grains turn golden yellow for best
-                    results.
-                </p>
-            </div>
-        </div>
 
-        <% } else { %>
+    <% const d=data.toString().trim();  %>
+        <% if (d in crops) { 
+            const crop=crops[d]; %>
             <b>
-                <h1><%= data %></h1>
+                <h1>
+                    <%= crop.name %>
+                </h1>
             </b>
+            <div class="model">
+                <!-- Iframe on the left -->
+                <div class="sketchfab-embed-wrapper">
+                    <% crop.embedCode %>" 
+                </div>
+                <!-- Paragraph on the right -->
+                <div class="text-box">
+                    <p class="para">
+                        <%= crop.description %>
+                    </p>
+                </div>
+            </div>
+
             <% } %>
 
 
-                <!--  footer -->
-                <footer id="contact">
-                    <section class="banner_main1">
-                        <div class="footer">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="titlepage">
-                                            <h2>Contact Us</h2>
+
+
+                    <footer id="contact">
+                        <section class="banner_main1">
+                            <div class="footer">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="titlepage">
+                                                <h2>Contact Us</h2>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <form id="request" class="main_form">
+                                                <div class="row">
+                                                    <div class="col-md-3 ">
+                                                        <input class="contactus" placeholder="Full Name" type="type"
+                                                            name="Full Name">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input class="contactus" placeholder="Email" type="type"
+                                                            name="Email">
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input class="contactus" placeholder="Phone Number" type="type"
+                                                            name="Phone Number">
+                                                    </div>
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                                                        <ul class="social_icon">
+                                                            <li><a href="#"><i class="fa fa-facebook"
+                                                                        aria-hidden="true"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="fa fa-twitter"
+                                                                        aria-hidden="true"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="fa fa-linkedin-square"
+                                                                        aria-hidden="true"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="fa fa-instagram"
+                                                                        aria-hidden="true"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <textarea class="contactus1" placeholder="Message" type="type"
+                                                            Message="Name">Message </textarea>
+                                                    </div>
+                                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                                        <button class="send_btn">Send</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-3 border_right">
+                                            <ul class="location_icon">
+                                                <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+                                                    Locatins</li>
+                                                <li><a href="#"><i class="fa fa-volume-control-phone"
+                                                            aria-hidden="true"></i></a>
+                                                    +71 9087654321</li>
+                                                <li><a href="#"><i class="fa fa-envelope"
+                                                            aria-hidden="true"></i></a>demo@gmail.com
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3 border_right">
+                                            <h3>Useful Link</h3>
+                                            <ul class="link">
+                                                <li><a href="#">humour,
+                                                        or </a></li>
+                                                <li><a href="#">randomised
+                                                        words </a> </li>
+                                                <li><a href="#">which
+                                                        don't look </a>
+                                                </li>
+                                                <li><a href="#">even
+                                                        slightly </a>
+                                                </li>
+                                                <li><a href="#">believable.
+                                                        If </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3 border_right">
+                                            <h3>Menus</h3>
+                                            <ul class="link">
+                                                <li><a href="index.html">Home</a>
+                                                </li>
+                                                <li><a href="about.html">About</a>
+                                                </li>
+                                                <li><a href="products.html">Products</a>
+                                                </li>
+                                                <li><a href="blog.html">Blog</a>
+                                                </li>
+                                                <li><a href="contact.html">Contact</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <form class="bottom_form">
+                                                <h3>Newsletter</h3>
+                                                <input class="enter" placeholder="Enter your email" type="text"
+                                                    name="Enter your email">
+                                                <button class="sub_btn">subscribe</button>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <form id="request" class="main_form">
-                                            <div class="row">
-                                                <div class="col-md-3 ">
-                                                    <input class="contactus" placeholder="Full Name" type="type"
-                                                        name="Full Name">
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input class="contactus" placeholder="Email" type="type"
-                                                        name="Email">
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <input class="contactus" placeholder="Phone Number" type="type"
-                                                        name="Phone Number">
-                                                </div>
-                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
-                                                    <ul class="social_icon">
-                                                        <li><a href="#"><i class="fa fa-facebook"
-                                                                    aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter"
-                                                                    aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-linkedin-square"
-                                                                    aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-instagram"
-                                                                    aria-hidden="true"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <textarea class="contactus1" placeholder="Message" type="type"
-                                                        Message="Name">Message </textarea>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
-                                                    <button class="send_btn">Send</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-md-3 border_right">
-                                        <ul class="location_icon">
-                                            <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
-                                                Locatins</li>
-                                            <li><a href="#"><i class="fa fa-volume-control-phone"
-                                                        aria-hidden="true"></i></a> +71 9087654321</li>
-                                            <li><a href="#"><i class="fa fa-envelope"
-                                                        aria-hidden="true"></i></a>demo@gmail.com</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3 border_right">
-                                        <h3>Useful Link</h3>
-                                        <ul class="link">
-                                            <li><a href="#">humour, or </a></li>
-                                            <li><a href="#">randomised words </a> </li>
-                                            <li><a href="#">which don't look </a></li>
-                                            <li><a href="#">even slightly </a> </li>
-                                            <li><a href="#">believable. If </a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3 border_right">
-                                        <h3>Menus</h3>
-                                        <ul class="link">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="products.html">Products</a></li>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <form class="bottom_form">
-                                            <h3>Newsletter</h3>
-                                            <input class="enter" placeholder="Enter your email" type="text"
-                                                name="Enter your email">
-                                            <button class="sub_btn">subscribe</button>
-                                        </form>
-                                    </div>
                                 </div>
-                            </div>
-                    </section>
-                    <div class="copyright">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Copyright 2019 All Right Reserved By <a href="https://html.design/"> Free html
-                                            Templates</a></p>
+                        </section>
+                        <div class="copyright">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Copyright 2019 All Right
+                                            Reserved By <a href="https://html.design/">
+                                                Free html
+                                                Templates</a></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    </div>
+                </div>
                 </footer>
                 <!-- end footer -->
                 <!-- Javascript files-->
