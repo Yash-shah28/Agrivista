@@ -5,111 +5,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three Div Layout</title>
-   <style>
-    /* General Styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-}
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
 
-.container {
-    display: flex;
-    height: 100vh;
-}
+        .container {
+            display: flex;
+            height: 100vh;
+        }
 
-/* Sidebar Styles */
-.sidebar {
-    width: 250px;
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border-right: 2px solid #34495e;
-    height: 100%;
-    box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s ease;
-}
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-right: 2px solid #34495e;
+            height: 100%;
+            box-shadow: 4px 0px 12px rgba(0, 0, 0, 0.1);
+            transition: width 0.3s ease;
+        }
 
-.sidebar:hover {
-    width: 300px;
-}
+        .sidebar:hover {
+            width: 300px;
+        }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
 
-.sidebar ul li {
-    margin: 15px 0;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+        .sidebar ul li {
+            margin: 15px 0;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-.sidebar ul li:hover {
-    background-color: #34495e;
-    color: #ecf0f1;
-}
+        .sidebar ul li:hover {
+            background-color: #34495e;
+            color: #ecf0f1;
+        }
 
-.sidebar ul li.active {
-    background-color: #1abc9c;
-    color: #ecf0f1;
-}
+        .sidebar ul li.active {
+            background-color: #1abc9c;
+            color: #ecf0f1;
+        }
 
-.sidebar ul li i {
-    margin-right: 10px;
-}
+        .sidebar ul li i {
+            margin-right: 10px;
+        }
 
-/* Sidebar Icons */
-.sidebar ul li.icon {
-    display: flex;
-    align-items: center;
-}
+        /* Sidebar Icons */
+        .sidebar ul li.icon {
+            display: flex;
+            align-items: center;
+        }
 
-/* Display Section Styles */
-.display {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ecf0f1;
-}
+        /* Display Section Styles */
+        .display {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ecf0f1;
+        }
 
-.display iframe {
-    width: 80%;
-    height: 80%;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
-}
+        .display iframe {
+            width: 80%;
+            height: 80%;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
 
-/* Info Box Styles */
-.info-box {
-    width: 30%;
-    background-color: #ecf0f1;
-    border-left: 2px solid #bdc3c7;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 18px;
-    color: #2c3e50;
-    position: relative;
-}
+        /* Info Box Styles */
+        .info-box {
+            width: 30%;
+            background-color: #ecf0f1;
+            border-left: 2px solid #bdc3c7;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 18px;
+            color: #2c3e50;
+            position: relative;
+        }
 
-.info-box p {
-    opacity: 1;
-    transition: opacity 1s ease-in-out; /* Smooth fade-in and fade-out */
-}
-
-   </style>
+        .info-box p {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
 </head>
 
 <body>
@@ -128,14 +127,6 @@ body {
                 <li class="icon" data-model="orange" data-info="Orange cultivation requires warm temperatures of 18–24°C."><i class="fas fa-cogs"></i> Orange</li>
                 <li class="icon" data-model="potato" data-info="Potato cultivation requires cool to moderate temperatures of 15–20°C."><i class="fas fa-cogs"></i> Potato</li>
                 <li class="icon" data-model="carrot" data-info="Carrot cultivation requires cool to moderate temperatures of 15–20°C."><i class="fas fa-cogs"></i> Carrot</li>
-
-
-
-
-                
-
-
-
             </ul>
         </div>
 
@@ -156,7 +147,7 @@ body {
         // Array of info texts for each plant
         const infoData = {
             rice: {
-                model: "https://sketchfab.com/models/02849731fe31486ca2eff1243455a6e9/embed", // Example link for rice model
+                model: "https://sketchfab.com/models/02849731fe31486ca2eff1243455a6e9/embed",
                 info: [
                     "Rice cultivation requires hot, humid conditions with temperatures of 20–35°C.",
                     "Maintain 5–10 cm of standing water during growth and drain before harvest.",
@@ -165,7 +156,7 @@ body {
                 ]
             },
             cabbage: {
-                model: "https://sketchfab.com/models/a2ce58a7c4a64a42bfb13af2350d18db/embed", // Replace with actual Cabbage model link
+                model: "https://sketchfab.com/models/a2ce58a7c4a64a42bfb13af2350d18db/embed",
                 info: [
                     "Cabbage requires cool, moist conditions with temperatures of 15–20°C.",
                     "Cabbage is harvested when the head is firm and compact.",
@@ -173,7 +164,7 @@ body {
                 ]
             },
             watermelon: {
-                model: "https://sketchfab.com/models/c15e41a62b46487fa6dcc67af7f7acee/embed", // Replace with actual Watermelon model link
+                model: "https://sketchfab.com/models/c15e41a62b46487fa6dcc67af7f7acee/embed",
                 info: [
                     "Watermelon grows best in hot, sunny conditions with temperatures of 25–35°C.",
                     "Watermelon needs well-drained soil with high organic matter.",
@@ -181,7 +172,7 @@ body {
                 ]
             },
             wheat: {
-                model: "https://sketchfab.com/models/ddff74ac0661414a9478bd4d7581c854/embed", // Replace with actual Wheat model link
+                model: "https://sketchfab.com/models/ddff74ac0661414a9478bd4d7581c854/embed",
                 info: [
                     "Wheat cultivation requires moderate temperatures of 15–20°C.",
                     "Wheat is usually harvested when the grains are fully ripe and hard.",
@@ -191,61 +182,59 @@ body {
             maize: {
                 model: "https://sketchfab.com/models/5fd3b104d8104519b061469c365d4974/embed",
                 info: [
-                  "Maize cultivation requires warm temperatures of 21–29°C",
-                  "Maize is usually harvested when the kernels are mature, firm, and dry",
-                  "Maize needs well-drained soil and a consistent water supply, especially during its growing period."  
+                    "Maize cultivation requires warm temperatures of 21–29°C.",
+                    "Maize is usually harvested when the kernels are mature, firm, and dry.",
+                    "Maize needs well-drained soil and a consistent water supply."
                 ]
             },
             barley: {
                 model: "https://sketchfab.com/models/5dbaa85638694660ac2f74df49aeb795/embed",
                 info: [
-                "Barley cultivation requires cool to moderate temperatures of 12–18°C",
-                "Barley is usually harvested when the grains are fully mature, firm, and golden brown",
-                "Barley needs well-drained soil with good fertility and a consistent water supply, particularly during its flowering and grain-filling stages."
+                    "Barley cultivation requires cool to moderate temperatures of 12–18°C.",
+                    "Barley is usually harvested when the grains are fully mature, firm, and golden brown.",
+                    "Barley needs well-drained soil with good fertility and a consistent water supply."
                 ]
             },
             tomato: {
                 model: "https://sketchfab.com/models/6997814540f14929bf13cf3828b5dc90/embed",
                 info: [
-                "Tomato cultivation requires warm temperatures of 18–25°C",
-                 "Tomato is usually harvested when the fruits are fully ripe, firm, and deep in color",
-                  "Tomato needs well-drained, fertile soil with a consistent water supply, especially during flowering and fruit development"
-            ]
+                    "Tomato cultivation requires warm temperatures of 18–25°C.",
+                    "Tomato is usually harvested when the fruits are fully ripe, firm, and deep in color.",
+                    "Tomato needs well-drained, fertile soil with a consistent water supply."
+                ]
             },
             mango: {
                 model: "https://sketchfab.com/models/5dbaa85638694660ac2f74df49aeb795/embed",
                 info: [
-                "Mango cultivation requires hot temperatures of 24–30°C",
-                "Mangoes are usually harvested when the fruits are fully ripe, fragrant, and have developed a rich color",
-                "Mangoes need well-drained, fertile soil with a consistent water supply, particularly during flowering and fruit-setting stages"
-            ]
+                    "Mango cultivation requires hot temperatures of 24–30°C.",
+                    "Mangoes are usually harvested when the fruits are fully ripe, fragrant, and have developed a rich color.",
+                    "Mangoes need well-drained, fertile soil with a consistent water supply."
+                ]
             },
             orange: {
                 model: "https://sketchfab.com/models/0896dc31d5154c97aa3f24e8ec1277aa/embed",
                 info: [
-                "Orange cultivation requires warm temperatures of 18–24°C",
-                "Oranges are usually harvested when the fruits are fully ripe, juicy, and have a bright orange color",
-                "Oranges need well-drained, sandy loam soil with a consistent water supply, especially during flowering and fruit maturation"
-            ]
+                    "Orange cultivation requires warm temperatures of 18–24°C.",
+                    "Oranges are usually harvested when the fruits are fully ripe, juicy, and have a bright orange color.",
+                    "Oranges need well-drained, sandy loam soil with a consistent water supply."
+                ]
             },
             carrot: {
                 model: "https://sketchfab.com/models/32b1e42427e543ccbdc38e6ad80bb99e/embed",
                 info: [
-                "Carrot cultivation requires cool to moderate temperatures of 15–20°C",
-                "Carrots are usually harvested when the roots are fully mature, firm, and orange in color",
-                "Carrots need well-drained, loose, fertile soil with consistent moisture, particularly during root development"
-            ]
+                    "Carrot cultivation requires cool to moderate temperatures of 15–20°C.",
+                    "Carrots are usually harvested when the roots are fully mature, firm, and orange in color.",
+                    "Carrots need well-drained, loose, fertile soil with consistent moisture."
+                ]
             },
             potato: {
                 model: "https://sketchfab.com/models/d62acc07c41740b3849855b6cd57e435/embed",
                 info: [
-                "Potato cultivation requires cool to moderate temperatures of 15–20°C",
-                "Potatoes are usually harvested when the plants have flowered, and the tubers are fully mature and firm",
-                "Potatoes need well-drained, loose soil with adequate moisture, especially during tuber formation and growth"
-            ]
-            },
-            
-            
+                    "Potato cultivation requires cool to moderate temperatures of 15–20°C.",
+                    "Potatoes are usually harvested when the plants have flowered, and the tubers are fully mature.",
+                    "Potatoes need well-drained, loose soil with adequate moisture."
+                ]
+            }
         };
 
         // Function to update the display and info box
@@ -254,10 +243,15 @@ body {
             const iframe = document.getElementById('3d-model');
             iframe.src = infoData[modelKey].model;
 
-            // Update info box text and set up interval for changing text every 2 seconds
+            // Update info box text
             const infoTextElement = document.getElementById('info-text');
             const infoTexts = infoData[modelKey].info;
             let currentIndex = 0;
+
+            // Clear any existing interval
+            if (window.infoTextInterval) {
+                clearInterval(window.infoTextInterval);
+            }
 
             // Function to change the text with smooth fade effect
             function changeInfoText() {
@@ -273,8 +267,8 @@ body {
                 }, 500); // Delay to allow the fade-out effect
             }
 
-            // Update the text every 2 seconds
-            setInterval(changeInfoText, 2000);
+            // Set interval for changing text every 2 seconds
+            window.infoTextInterval = setInterval(changeInfoText, 2000);
 
             // Change the initial text immediately
             changeInfoText();
