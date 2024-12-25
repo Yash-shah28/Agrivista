@@ -50,6 +50,13 @@ app.get("/simulate",(req,res)=>{
 app.get('/x',(req,res)=>{
   res.render('predict.ejs',{data})
 })
+app.get("/fertilizer_prediction",(req,res)=>{
+  res.render('Fertilizerpredictor.ejs')
+})
+
+app.get("/crop_yeild_predictor",(req,res)=>{
+  res.render('cropyieldpredict.ejs')
+})
 
 app.post('/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
