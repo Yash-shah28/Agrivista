@@ -92,7 +92,7 @@
 
 <div class="row mt-3">
 
-    <h3 class="col-6 offset-3">Fertilizer Prediction</h3>
+    <h3 class="col-6 offset-3">CropYield Prediction</h3>
     <div class="col-6 offset-3">
         <form action="/predict" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
@@ -119,7 +119,7 @@
             <div class="mb-3">
                 <label for="crop" class="form-label">Crop</label>
                 <select id="crop" name="crop" class="form-select" required>
-               <option value="">--Select Crop--</option>
+                <option value="">--Select Crop--</option>
                 <option value="rice">rice</option>
                 <option value="maize">maize</option>
                 <option value="ckickpea">ckickpea</option>
@@ -141,8 +141,55 @@
                 <option value="cotton">cotton</option>
                 <option value="jute">jute</option>
                 <option value="coffee">coffee</option>
-               </select>
+            </select>
             </div>
+            <div class="mb-3">
+                <label for="rainfall" class="form-label">rainfall</label>
+                <input type="text" id="rainfall" name="rainfall" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please enter a valid rainfall.
+                </div>
+
+            <label for="state" class="form-label">state</label>
+            <select id="state" name="state" class="form-select" required>
+                <option value="">--Select State--</option>
+                <option value="andhra-pradesh">Andhra Pradesh</option>
+                <option value="arunachal-pradesh">Arunachal Pradesh</option>
+                <option value="assam">Assam</option>
+                <option value="bihar">Bihar</option>
+                <option value="chhattisgarh">Chhattisgarh</option>
+                <option value="goa">Goa</option>
+                <option value="gujarat">Gujarat</option>
+                <option value="haryana">Haryana</option>
+                <option value="himachal-pradesh">Himachal Pradesh</option>
+                <option value="jharkhand">Jharkhand</option>
+                <option value="karnataka">Karnataka</option>
+                <option value="kerala">Kerala</option>
+                <option value="madhya-pradesh">Madhya Pradesh</option>
+                <option value="maharashtra">Maharashtra</option>
+                <option value="manipur">Manipur</option>
+                <option value="meghalaya">Meghalaya</option>
+                <option value="mizoram">Mizoram</option>
+                <option value="nagaland">Nagaland</option>
+                <option value="odisha">Odisha</option>
+                <option value="punjab">Punjab</option>
+                <option value="rajasthan">Rajasthan</option>
+                <option value="sikkim">Sikkim</option>
+                <option value="tamil-nadu">Tamil Nadu</option>
+                <option value="telangana">Telangana</option>
+                <option value="tripura">Tripura</option>
+                <option value="uttar-pradesh">Uttar Pradesh</option>
+                <option value="uttarakhand">Uttarakhand</option>
+                <option value="west-bengal">West Bengal</option>
+                <option value="andaman-nicobar">Andaman and Nicobar Islands</option>
+                <option value="chandigarh">Chandigarh</option>
+                <option value="dadra-nagar-haveli-daman-diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="delhi">Delhi</option>
+                <option value="jammu-kashmir">Jammu and Kashmir</option>
+                <option value="ladakh">Ladakh</option>
+                <option value="lakshadweep">Lakshadweep</option>
+                <option value="puducherry">Puducherry</option>
+            </select>
             <button class="btn btn-success">Predict</button>
 
         </form>
