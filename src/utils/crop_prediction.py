@@ -29,7 +29,7 @@ humidity = float(humidity)
 ph = float(ph)
 rainfall = float(rainfall)
 
-model = pickle.load(open('C:/Users/VICTUS/OneDriveDesktop/Agri-git/Agrivista/src/utils/DecisionTree.pkl', 'rb'))
+model = pickle.load(open('C:\Users\VICTUS\OneDriveDesktop\Agri-git\Agrivista\src\utils\DecisionTree.pkl', 'rb'))
 # print("Model loaded successfully.", file=sys.stderr)
 prediction = model.predict([[N, P, K, temperature, humidity, ph, rainfall]])
 pred = str(prediction[0])
