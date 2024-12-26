@@ -4,7 +4,6 @@ import os
 import pickle
 import json
 import sys
-import sklearn
 import warnings
 warnings.filterwarnings("ignore", message="X does not have valid feature names")
 

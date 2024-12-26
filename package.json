@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon -r dotenv/config --experimental-json-modules src/app.js",
-    "start": "pip install -r requirements.txt && node src/app.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/app.js"
   },
   "keywords": [],
   "author": "Yash",
