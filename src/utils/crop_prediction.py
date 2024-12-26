@@ -1,5 +1,6 @@
 # crop-pred-DT
 # print('Welcome') # type: ignore
+import os
 import pickle
 import json
 import sys
@@ -29,7 +30,11 @@ humidity = float(humidity)
 ph = float(ph)
 rainfall = float(rainfall)
 
-model = pickle.load(open('C:/Users/VICTUS/OneDriveDesktop/Agri-git/Agrivista/src/utils/DecisionTree.pkl', 'rb'))
+script_dir = os.path.dirname(os.path.realpath(__file__))  # Get the current script directory
+model_path = os.path.join(script_dir, 'DecisionTree.pkl')  # Relative path to the `.pkl` file
+
+
+model = pickle.load(open(model_path, 'rb'))
 # print("Model loaded successfully.", file=sys.stderr)
 prediction = model.predict([[N, P, K, temperature, humidity, ph, rainfall]])
 pred = str(prediction[0])

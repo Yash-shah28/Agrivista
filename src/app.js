@@ -62,7 +62,7 @@ app.post('/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
   // console.log(N,P,K,temperature,humidity,ph,rainfall)
   const obj = {N: N,P: P, K: K ,temperature: temperature,humidity: humidity, ph: ph,rainfall: rainfall}
-  const pythonscript = "C:/Users/VICTUS/OneDriveDesktop/Agri-git/Agrivista/src/utils/crop_prediction.py"
+  const pythonscript = path.join(__dirname, 'utils', 'crop_prediction.py');
   const childPython = spawn('python',[pythonscript, JSON.stringify(obj)])
   const crops = {
     rice: {
