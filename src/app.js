@@ -58,6 +58,29 @@ app.get("/crop_yeild_predictor",(req,res)=>{
   res.render('cropyieldpredict.ejs')
 })
 
+app.post('/Cropyeildpredict',(req,res)=>{
+    let {Fertilizer,Pesticide,Crop,rainfall,state,season} = req.body; 
+    // console.log(Fertilizer,Pesticide,Crop,rainfall,state,season)
+    const obj = {Crop: Crop, Season: season, State: state, rainfall: rainfall, Fertilizer: Fertilizer, Pesticide: Pesticide}
+    const pythonscript = path.join(__dirname, 'utils', 'crop_yeild_prediction.py');
+    const childPython = spawn('python',[pythonscript, JSON.stringify(obj)])
+
+    childPython.stdout.on('data',(data)=>{
+  
+        console.log(`stdout: ${data}`)
+        res.render('cropyeild.ejs',{data})
+    });
+    
+    childPython.stderr.on('data',(data)=>{
+        console.error(`stderr: ${data}`)
+    });
+    
+    childPython.on('close',(code)=>{
+        console.log(`Child process exited on code: ${code}`)
+    });
+})
+
+
 app.post('/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
   // console.log(N,P,K,temperature,humidity,ph,rainfall)
@@ -185,6 +208,29 @@ childPython.stdout.on('data',(data)=>{
 
 childPython.stderr.on('data',(data)=>{
     console.error(`stderr: ${data}`)
+});
+
+childPython.on('close',(code)=>{
+    console.log(`Child process exited on code: ${code}`)
+});
+
+})
+
+
+app.post("/fertilizerpredict",(req,res)=>{
+  let {N, P, K, crop} = req.body;
+  const obj = {N: N,P: P, K: K , crop: crop}
+  const pythonscript = path.join(__dirname, 'utils', 'fertlizer_prediction.py');
+  const childPython = spawn('python',[pythonscript, JSON.stringify(obj)]);
+
+  childPython.stdout.on('data',(fert)=>{
+  
+    console.log(`stdout: ${fert}`)
+    res.render('predict.ejs',{fert})
+});
+
+childPython.stderr.on('data',(fert)=>{
+    console.error(`stderr: ${fert}`)
 });
 
 childPython.on('close',(code)=>{

@@ -94,33 +94,27 @@
 
     <h3 class="col-6 offset-3">CropYield Prediction</h3>
     <div class="col-6 offset-3">
-        <form action="/predict" method="post" class="needs-validation" novalidate>
+        <form action="/Cropyeildpredict" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
-                <label for="N" class="form-label">Nitrogen</label>
-                <input type="text" id="N" name="N" class="form-control" required>
+                <label for="Fertilizer" class="form-label">Fertilizer</label>
+                <input type="text" id="Fertilizer" name="Fertilizer" class="form-control" required>
                 <div class="invalid-feedback">
                     Please enter a valid N.
                 </div>
             </div>
             <div class="mb-3">
-                <label for="P" class="form-label">Phosporous</label>
-                <input type="text" id="P" name="P" class="form-control" required>
+                <label for="P" class="form-label">Pesticide</label>
+                <input type="text" id="P" name="Pesticide" class="form-control" required>
                 <div class="invalid-feedback">
                     Please enter a valid Phosporous.
                 </div>
             </div>
+           
             <div class="mb-3">
-                <label for="K" class="form-label">Photasium</label>
-                <input type="text" id="K" name="K" class="form-control" required>
-                <div class="invalid-feedback">
-                    Please enter a valid N.
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="crop" class="form-label">Crop</label>
-                <select id="crop" name="crop" class="form-select" required>
+                <label for="Crop" class="form-label">Crop</label>
+                <select id="Crop" name="Crop" class="form-select" required>
                 <option value="">--Select Crop--</option>
-                <option value="rice">rice</option>
+                <option value="Rice">rice</option>
                 <option value="maize">maize</option>
                 <option value="ckickpea">ckickpea</option>
                 <option value="kidney bean">kidney bean</option>
