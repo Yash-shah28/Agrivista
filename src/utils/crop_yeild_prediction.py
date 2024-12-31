@@ -67,7 +67,7 @@ def map_crop_to_number(crop_name):
         'Moth': 28
     }
     
-    return crop_mapping.get(crop_name, 'Invalid crop name')
+    return crop_mapping.get(crop_name, 35)
 
 def map_number_to_season(season_name):
     season_mapping = {
