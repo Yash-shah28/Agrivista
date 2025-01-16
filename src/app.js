@@ -35,30 +35,30 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "/public")))
 
 
-app.get('/', (req,res) => {
+app.get('/api/', (req,res) => {
     res.render('index.ejs');
   });
 
-app.get('/crop_prediction',(req,res)=>{
+app.get('/api/crop_prediction',(req,res)=>{
   res.render('cropprediction.ejs');
 });
 
-app.get("/simulate",(req,res)=>{
+app.get("/api/simulate",(req,res)=>{
   res.render("cropvisualization")
 })
 
-app.get('/x',(req,res)=>{
+app.get('/api/x',(req,res)=>{
   res.render('predict.ejs',{data})
 })
-app.get("/fertilizer_prediction",(req,res)=>{
+app.get("/api/fertilizer_prediction",(req,res)=>{
   res.render('Fertilizerpredictor.ejs')
 })
 
-app.get("/crop_yeild_predictor",(req,res)=>{
+app.get("/api/crop_yeild_predictor",(req,res)=>{
   res.render('cropyieldpredict.ejs')
 })
 
-app.post('/Cropyeildpredict',(req,res)=>{
+app.post('/api/Cropyeildpredict',(req,res)=>{
     let {Fertilizer,Pesticide,Crop,rainfall,state,season} = req.body; 
     // console.log(Fertilizer,Pesticide,Crop,rainfall,state,season)
     const obj = {Crop: Crop, Season: season, State: state, rainfall: rainfall, Fertilizer: Fertilizer, Pesticide: Pesticide}
@@ -81,7 +81,7 @@ app.post('/Cropyeildpredict',(req,res)=>{
 })
 
 
-app.post('/predict',(req,res)=>{
+app.post('/api/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
   // console.log(N,P,K,temperature,humidity,ph,rainfall)
   const obj = {N: N,P: P, K: K ,temperature: temperature,humidity: humidity, ph: ph,rainfall: rainfall}
@@ -217,7 +217,7 @@ childPython.on('close',(code)=>{
 })
 
 
-app.post("/fertilizerpredict",(req,res)=>{
+app.post("/api/fertilizerpredict",(req,res)=>{
   let {N, P, K, crop} = req.body;
   const obj = {N: N,P: P, K: K , crop: crop}
   const pythonscript = path.join(__dirname, 'utils', 'fertlizer_prediction.py');
