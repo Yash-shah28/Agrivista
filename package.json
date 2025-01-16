@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start: " npm src/app.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/app.js"
   },
   "keywords": [],
   "author": "Yash",
@@ -11,6 +11,7 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "Agrivista": "file:",
     "dotenv": "^16.4.6",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
