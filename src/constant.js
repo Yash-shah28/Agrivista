@@ -1,1 +1,1 @@
-export const DB_NAME = "MediQuick"
+export const DB_NAME="Agrivista"
