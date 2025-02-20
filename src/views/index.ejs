@@ -30,7 +30,20 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
+    
    <body class="main-layout">
+      <% if (success && success.length) { %>
+         <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
+             <%= success %>
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>    
+     <% } 
+      else if (error && error.length) { %>
+         <div class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
+             <%= error %>
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>    
+     <% } %>
       <!-- loader  -->
       <div class="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="#" /></div>
@@ -74,7 +87,10 @@
                                  <a class="nav-link" href="/simulate">Crop  Visualization</a>
                               </li>
                               <li class="nav-item d_none">
-                                 <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                 <a class="nav-link" href="/login">Login</a>
+                              </li>
+                              <li class="nav-item d_none">
+                                 <a class="nav-link" href="/signup">Signup</a>
                               </li>
                               <!-- <li class=" d_none get_btn">
                                  <a  href="#">Get a quote</a>
