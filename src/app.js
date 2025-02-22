@@ -5,13 +5,18 @@ import dotenv from "dotenv";
 import methodOverride from 'method-override'
 import ejsMate from 'ejs-mate'
 import { spawn } from 'child_process';
-
-
+import connectDB from './db/index.js';
+import flash from 'connect-flash'
+import passport from 'passport';
+import LocalStratergy from 'passport-local'
+import ExpressError from './utils/ExpressError.js'
+import userrouter from './routes/user.routes.js'
+import User from './models/user.model.js'
+import session from 'express-session'
 
 dotenv.config({
     path: './.env'
-  })
-
+})
 
 
 const app = express();
@@ -33,6 +38,38 @@ app.use(express.json())
 app.use(methodOverride('_method'));
 
 app.use(express.static(path.join(__dirname, "/public")))
+
+
+const sessionOption = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expries: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+};
+
+app.use(session(sessionOption));
+
+app.use(flash());
+
+
+// Setting up passport for authentication
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStratergy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use((req,res,next) =>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.currentUser = req.user;
+    next();
+})
 
 
 app.get('/', (req,res) => {
@@ -57,6 +94,8 @@ app.get("/fertilizer_prediction",(req,res)=>{
 app.get("/crop_yeild_predictor",(req,res)=>{
   res.render('cropyieldpredict.ejs')
 })
+
+
 
 app.post('/Cropyeildpredict',(req,res)=>{
     let {Fertilizer,Pesticide,Crop,rainfall,state,season} = req.body; 
@@ -239,19 +278,26 @@ childPython.on('close',(code)=>{
 
 })
 
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
 
-  
+app.use("/", userrouter );
 
-// connectDB()
-// .then(() => {
-//   try {
-//     app.listen(port, () => {
-//       console.log(`Server running at http://localhost:${port}`);
-//     });
-//   } catch (error) {
-//       console.log("Error : ", error);
-//   }
-// })
+app.all("*",(req,res,next)=>{
+    next(new ExpressError(404,"Page not found!"))
+})
+app.use((err,req,res,next)=>{
+    let {statusCode = 500, message = "Something went wrong!"} = err;
+   res.status(statusCode).render("error.ejs", {message} );
+
+})
+
+
+connectDB()
+.then(() => {
+  try {
+    app.listen(port, () => {
+      console.log(`Server running at http://localhost:${port}`);
+    });
+  } catch (error) {
+      console.log("Error : ", error);
+  }
+})
