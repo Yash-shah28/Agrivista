@@ -80,6 +80,10 @@ app.get('/crop_prediction',(req,res)=>{
   res.render('cropprediction.ejs');
 });
 
+app.get('/profile',(req,res)=>{
+    res.render('profile.ejs')
+})
+
 app.get("/simulate",(req,res)=>{
   res.render("cropvisualization")
 })
