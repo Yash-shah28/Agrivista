@@ -5,13 +5,18 @@ import dotenv from "dotenv";
 import methodOverride from 'method-override'
 import ejsMate from 'ejs-mate'
 import { spawn } from 'child_process';
-
-
+import connectDB from './db/index.js';
+import flash from 'connect-flash'
+import passport from 'passport';
+import LocalStratergy from 'passport-local'
+import ExpressError from './utils/ExpressError.js'
+import userrouter from './routes/user.routes.js'
+import User from './models/user.model.js'
+import session from 'express-session'
 
 dotenv.config({
     path: './.env'
-  })
-
+})
 
 
 const app = express();
@@ -35,6 +40,38 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "/public")))
 
 
+const sessionOption = {
+    secret: "mysupersecretcode",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        expries: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
+};
+
+app.use(session(sessionOption));
+
+app.use(flash());
+
+
+// Setting up passport for authentication
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStratergy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use((req,res,next) =>{
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    res.locals.currentUser = req.user;
+    next();
+})
+
+
 app.get('/', (req,res) => {
     res.render('index.ejs');
   });
@@ -42,6 +79,10 @@ app.get('/', (req,res) => {
 app.get('/crop_prediction',(req,res)=>{
   res.render('cropprediction.ejs');
 });
+
+app.get('/profile',(req,res)=>{
+    res.render('profile.ejs')
+})
 
 app.get("/simulate",(req,res)=>{
   res.render("cropvisualization")
@@ -58,11 +99,40 @@ app.get("/crop_yeild_predictor",(req,res)=>{
   res.render('cropyieldpredict.ejs')
 })
 
+
+
+app.post('/Cropyeildpredict',(req,res)=>{
+    let {Fertilizer,Pesticide,Crop,rainfall,state,season} = req.body; 
+    // console.log(Fertilizer,Pesticide,Crop,rainfall,state,season)
+    const obj = {Crop: Crop, Season: season, State: state, rainfall: rainfall, Fertilizer: Fertilizer, Pesticide: Pesticide}
+    const pythonscript = path.join(__dirname, 'utils', 'crop_yeild_prediction.py');
+    const childPython = spawn('python',[pythonscript, JSON.stringify(obj)])
+
+    childPython.stdout.on('data',(data)=>{
+  
+        console.log(`stdout: ${data}`)
+        res.render('cropyeild.ejs',{data})
+    });
+    
+    childPython.stderr.on('data',(data)=>{
+        console.error(`stderr: ${data}`)
+    });
+    
+    childPython.on('close',(code)=>{
+        console.log(`Child process exited on code: ${code}`)
+    });
+})
+
+
 app.post('/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
   // console.log(N,P,K,temperature,humidity,ph,rainfall)
   const obj = {N: N,P: P, K: K ,temperature: temperature,humidity: humidity, ph: ph,rainfall: rainfall}
+<<<<<<< HEAD
   const pythonscript = "C:\\Users\\VICTUS\\OneDrive\\Desktop\\Agri-git\\Agrivista\\src\\utils\\crop_prediction.py";
+=======
+  const pythonscript = path.join(__dirname, 'utils', 'crop_prediction.py');
+>>>>>>> 203cdd7be440e20a2ee3b4e0592622362de5dd9a
   const childPython = spawn('python',[pythonscript, JSON.stringify(obj)])
   const crops = {
     rice: {
@@ -193,19 +263,49 @@ childPython.on('close',(code)=>{
 
 })
 
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
 
+app.post("/fertilizerpredict",(req,res)=>{
+  let {N, P, K, crop} = req.body;
+  const obj = {N: N,P: P, K: K , crop: crop}
+  const pythonscript = path.join(__dirname, 'utils', 'fertlizer_prediction.py');
+  const childPython = spawn('python',[pythonscript, JSON.stringify(obj)]);
+
+  childPython.stdout.on('data',(fert)=>{
   
+    console.log(`stdout: ${fert}`)
+    res.render('predict.ejs',{fert})
+});
 
-// connectDB()
-// .then(() => {
-//   try {
-//     app.listen(port, () => {
-//       console.log(`Server running at http://localhost:${port}`);
-//     });
-//   } catch (error) {
-//       console.log("Error : ", error);
-//   }
-// })
+childPython.stderr.on('data',(fert)=>{
+    console.error(`stderr: ${fert}`)
+});
+
+childPython.on('close',(code)=>{
+    console.log(`Child process exited on code: ${code}`)
+});
+
+})
+
+
+app.use("/", userrouter );
+
+app.all("*",(req,res,next)=>{
+    next(new ExpressError(404,"Page not found!"))
+})
+app.use((err,req,res,next)=>{
+    let {statusCode = 500, message = "Something went wrong!"} = err;
+   res.status(statusCode).render("error.ejs", {message} );
+
+})
+
+
+connectDB()
+.then(() => {
+  try {
+    app.listen(port, () => {
+      console.log(`Server running at http://localhost:${port}`);
+    });
+  } catch (error) {
+      console.log("Error : ", error);
+  }
+})

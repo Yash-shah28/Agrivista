@@ -31,11 +31,19 @@
    </head>
    <!-- body -->
    <body class="main-layout">
-      <!-- loader  -->
-      <!-- <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-      </div> -->
-      <!-- end loader -->
+      <% if (success && success.length) { %>
+         <div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
+             <%= success %>
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>    
+     <% } 
+      else if (error && error.length) { %>
+         <div class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
+             <%= error %>
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           </div>    
+     <% } %>
+      
       <!-- header -->
       <header>
          <!-- header inner -->
@@ -73,9 +81,23 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="/simulate">Crop  Visualization</a>
                               </li>
-                              <li class="nav-item d_none">
-                                 <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                              <!-- <li class="nav-item d_none">
+                                 <a class="nav-link" href="/login">Login</a>
                               </li>
+                              <li class="nav-item d_none">
+                                 <a class="nav-link" href="/signup">Signup</a>
+                              </li> -->
+
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  My Account
+                                 </a>
+                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
+                                   <a class="dropdown-item" href="/login">Login</a>
+                                   <a class="dropdown-item" href="/signup">Signup</a>
+                                   <a class="dropdown-item" href="/profile">Profile</a>
+                                 </div>
+                               </li>
                               <!-- <li class=" d_none get_btn">
                                  <a  href="#">Get a quote</a>
                               </li> -->
@@ -89,6 +111,7 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
+      <!-- banner -->
 
 <div class="row mt-3">
 
@@ -120,28 +143,71 @@
                 <label for="crop" class="form-label">Crop</label>
                 <select id="crop" name="crop" class="form-select" required>
                <option value="">--Select Crop--</option>
-                <option value="rice">rice</option>
-                <option value="maize">maize</option>
-                <option value="ckickpea">ckickpea</option>
-                <option value="kidney bean">kidney bean</option>
-                <option value="pigeon pea">pigeon pea</option>
-                <option value="moth beans">moth bean</option>
-                <option value="mung bean">mung bean</option>
-                <option value="lentil">lentil</option>
-                <option value="pomegranate">pomegranate</option>
-                <option value="banana">banana</option>
-                <option value="mango">mango</option>
-                <option value="grapes">grapes</option>
-                <option value="watermelon">watermelon</option>
-                <option value="muskmelon">muskmelon</option>
-                <option value="apple">apple</option>
-                <option value="orange">orange</option>
-                <option value="papaya">papaya</option>
-                <option value="coconut">coconut</option>
-                <option value="cotton">cotton</option>
-                <option value="jute">jute</option>
-                <option value="coffee">coffee</option>
-               </select>
+               <option value="Arecanut">Arecanut</option>
+               <option value="Arhar/Tur">Arhar/Tur</option>
+               <option value="Castor seed">Castor seed</option>
+               <option value="Coconut">Coconut</option>
+               <option value="Cotton(lint)">Cotton(lint)</option>
+               <option value="Dry chillies">Dry chillies</option>
+               <option value="Gram">Gram</option>
+               <option value="Jute">Jute</option>
+               <option value="Linseed">Linseed</option>
+               <option value="Maize">Maize</option>
+               <option value="Mesta">Mesta</option>
+               <option value="Niger seed">Niger seed</option>
+               <option value="Onion">Onion</option>
+               <option value="Other Rabi pulses">Other Rabi pulses</option>
+               <option value="Potato">Potato</option>
+               <option value="Rapeseed & Mustard">Rapeseed & Mustard</option>
+               <option value="Rice">Rice</option>
+               <option value="Sesamum">Sesamum</option>
+               <option value="Small millets">Small millets</option>
+               <option value="Sugarcane">Sugarcane</option>
+               <option value="Sweet potato">Sweet potato</option>
+               <option value="Tapioca">Tapioca</option>
+               <option value="Tobacco">Tobacco</option>
+               <option value="Turmeric">Turmeric</option>
+               <option value="Wheat">Wheat</option>
+               <option value="Bajra">Bajra</option>
+               <option value="Black pepper">Black pepper</option>
+               <option value="Cardamom">Cardamom</option>
+               <option value="Coriander">Coriander</option>
+               <option value="Garlic">Garlic</option>
+               <option value="Ginger">Ginger</option>
+               <option value="Groundnut">Groundnut</option>
+               <option value="Horse-gram">Horse-gram</option>
+               <option value="Jowar">Jowar</option>
+               <option value="Ragi">Ragi</option>
+               <option value="Cashewnut">Cashewnut</option>
+               <option value="Banana">Banana</option>
+               <option value="Soyabean">Soyabean</option>
+               <option value="Barley">Barley</option>
+               <option value="Khesari">Khesari</option>
+               <option value="Masoor">Masoor</option>
+               <option value="Moong(Green Gram)">Moong(Green Gram)</option>
+               <option value="Other Kharif pulses">Other Kharif pulses</option>
+               <option value="Safflower">Safflower</option>
+               <option value="Sannhamp">Sannhamp</option>
+               <option value="Sunflower">Sunflower</option>
+               <option value="Urad">Urad</option>
+               <option value="Peas & beans (Pulses)">Peas & beans (Pulses)</option>
+               <option value="Other oilseeds">Other oilseeds</option>
+               <option value="Other Cereals">Other Cereals</option>
+               <option value="Cowpea(Lobia)">Cowpea(Lobia)</option>
+               <option value="Oilseeds total">Oilseeds total</option>
+               <option value="Guar seed">Guar seed</option>
+               <option value="Other Summer Pulses">Other Summer Pulses</option>
+               <option value="Moth">Moth</option>
+           </select>
+           <script>
+              const selectElement = document.getElementById("Crop");
+              const options = Array.from(selectElement.options);
+            
+              options.sort((a, b) => a.text.localeCompare(b.text)); 
+            
+              selectElement.innerHTML = "";
+              options.forEach(option => selectElement.appendChild(option)); 
+            </script>
             </div>
             <button class="btn btn-success">Predict</button>
 
