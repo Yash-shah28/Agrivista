@@ -28,6 +28,32 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+      <style>
+      select {
+         display: block;
+         width: 100%;
+         padding: .375rem .75rem;
+         font-size: 1rem;
+         line-height: 1.5;
+         color: #495057;
+         background-color: #fff;
+         background-clip: padding-box;
+         border: 1px solid #ced4da;
+         border-radius: .25rem;
+         transition: border-color .15sease-in-out, box-shadow .15sease-in-out;
+      }
+      .btn-success {
+      margin-top: 20px; /* Moves the button down */
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+      </style>
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -137,8 +163,8 @@
                     Please enter a valid N.
                 </div>
             </div>
-            <div class="mb-3">
-                <label for="crop" class="form-label">Crop</label>
+            <div class="">
+                <label>Crop</label>
                 <select id="crop" name="crop" class="form-select" required>
                <option value="">--Select Crop--</option>
                <option value="Arecanut">Arecanut</option>
