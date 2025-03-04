@@ -99,6 +99,10 @@ app.get("/crop_yeild_predictor",(req,res)=>{
   res.render('cropyieldpredict.ejs')
 })
 
+app.get('/profileedit',(req,res)=>{
+    res.render('profileedit.ejs')
+})
+
 
 
 app.post('/Cropyeildpredict',(req,res)=>{
