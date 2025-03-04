@@ -11,6 +11,7 @@ import passport from 'passport';
 import LocalStratergy from 'passport-local'
 import ExpressError from './utils/ExpressError.js'
 import userrouter from './routes/user.routes.js'
+import profilerouter from './routes/profile.routes.js'
 import User from './models/user.model.js'
 import session from 'express-session'
 
@@ -80,9 +81,7 @@ app.get('/crop_prediction',(req,res)=>{
   res.render('cropprediction.ejs');
 });
 
-app.get('/profile',(req,res)=>{
-    res.render('profile.ejs')
-})
+
 
 app.get("/simulate",(req,res)=>{
   res.render("cropvisualization")
@@ -99,9 +98,7 @@ app.get("/crop_yeild_predictor",(req,res)=>{
   res.render('cropyieldpredict.ejs')
 })
 
-app.get('/profileedit',(req,res)=>{
-    res.render('profileedit.ejs')
-})
+
 
 
 
@@ -288,6 +285,7 @@ childPython.on('close',(code)=>{
 
 
 app.use("/", userrouter );
+app.use("/", profilerouter );
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"Page not found!"))

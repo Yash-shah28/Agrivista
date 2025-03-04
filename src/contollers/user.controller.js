@@ -19,7 +19,7 @@ export  const saveSignup = wrapAsync(async (req,res) =>{
             return next(err);
         }
         req.flash("success","Welcome To Agrivista")
-     res.redirect('/');
+     res.redirect('/profile');
     })
     } catch (e) {
         req.flash("error",e.message)
@@ -29,7 +29,7 @@ export  const saveSignup = wrapAsync(async (req,res) =>{
 
 export const checklogin = wrapAsync (async (req,res) =>{
     req.flash("success","Welcome back to Agrivista!");
-    let redirectUrl = res.locals.redirectUrl || "/";
+    let redirectUrl = res.locals.redirectUrl || "/profile";
     res.redirect(redirectUrl)
 })
 
