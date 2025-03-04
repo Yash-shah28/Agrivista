@@ -39,6 +39,6 @@ export const logout = (req,res)=>{
             next(err);
         }
         req.flash("success","You are logged Out!");
-        res.redirect("/listings")
+        res.redirect("/")
     })
 }
