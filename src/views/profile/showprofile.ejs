@@ -79,19 +79,19 @@
       }
 
       .edit-btn {
-         background-color: #34eb20;
-         color: white;
-         padding: 12px 20px;
+         margin-top: 10px; /* Moves the button down */
+         padding: .375rem .75rem;
          font-size: 16px;
          border: none;
-         border-radius: 5px;
+         background-color: #28a745;
+         color: white;
          cursor: pointer;
-         margin-top: 20px;
+         border-radius: 5px;
       }
 
-      .edit-btn:hover {
+      /* .edit-btn:hover {
          background-color: #4cea25;
-      }
+      } */
    </style>
 </head>
 
@@ -225,7 +225,9 @@
 
                <!-- Edit Button -->
                  <div>
-                  <a href="/profile/<%= allprofile._id %>/edit" class="edit-btn">Edit Profile</a>
+                   <a href="/profile/<%= allprofile._id %>/edit"> 
+                     <button class="edit-btn">Edit Profile</button>
+                  </a>
                  </div>
 
             </div>
