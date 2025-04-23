@@ -19,7 +19,7 @@ export const showprofile = wrapAsync(async(req,res)=>{
     const allprofile = await Profile.findOne({'owner':req.user._id})
     .populate("owner");
     if(!allprofile){
-        req.flash("error","Listing you requested for doesnot exist!");
+        req.flash("error","Profile you requested for doesnot exist!");
         res.redirect("/")
     }
     res.render('profile/showprofile.ejs', { allprofile })
@@ -41,3 +41,4 @@ export const puteditprofile = wrapAsync(async(req,res)=>{
     req.flash("success","profile Updated!")
     res.redirect('/showprofile')
 })
+

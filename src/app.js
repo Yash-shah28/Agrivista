@@ -12,7 +12,12 @@ import LocalStratergy from 'passport-local'
 import ExpressError from './utils/ExpressError.js'
 import userrouter from './routes/user.routes.js'
 import profilerouter from './routes/profile.routes.js'
+import csv from 'csv-parser'
+import fs from 'fs'
+
+
 import User from './models/user.model.js'
+import Profile from './models/profile.model.js'
 import session from 'express-session'
 
 dotenv.config({
@@ -77,8 +82,19 @@ app.get('/', (req,res) => {
     res.render('index.ejs');
   });
 
-app.get('/crop_prediction',(req,res)=>{
-  res.render('cropprediction.ejs');
+app.get('/crop_prediction',async(req,res)=>{
+    const curruser = res.locals.currentUser
+   if( res.locals.currentUser){
+    const allprofile = await Profile.findOne({'owner':req.user._id})
+    if(!allprofile){
+        req.flash("error","Profile you requested for doesnot exist!");
+        res.redirect("/")
+    }
+    res.render('cropprediction.ejs',{ allprofile, curruser })
+   }
+   else{
+    res.render('cropprediction.ejs', {curruser})
+   }
 });
 
 
@@ -87,15 +103,24 @@ app.get("/simulate",(req,res)=>{
   res.render("cropvisualization")
 })
 
-app.get('/x',(req,res)=>{
-  res.render('predict.ejs',{data})
-})
+
 app.get("/fertilizer_prediction",(req,res)=>{
   res.render('Fertilizerpredictor.ejs')
 })
 
-app.get("/crop_yeild_predictor",(req,res)=>{
-  res.render('cropyieldpredict.ejs')
+app.get("/crop_yeild_predictor",async(req,res)=>{
+    const curruser = res.locals.currentUser
+    if( res.locals.currentUser){
+     const allprofile = await Profile.findOne({'owner':req.user._id})
+     if(!allprofile){
+         req.flash("error","Profile you requested for doesnot exist!");
+         res.redirect("/")
+     }
+     res.render('cropyieldpredict.ejs',{ allprofile, curruser })
+    }
+    else{
+     res.render('cropyieldpredict.ejs', {curruser})
+    }
 })
 
 
@@ -127,6 +152,7 @@ app.post('/Cropyeildpredict',(req,res)=>{
 
 app.post('/predict',(req,res)=>{
   let {N,P,K,temperature,humidity,ph,rainfall} = req.body;
+  
   // console.log(N,P,K,temperature,humidity,ph,rainfall)
   const obj = {N: N,P: P, K: K ,temperature: temperature,humidity: humidity, ph: ph,rainfall: rainfall}
   const pythonscript = path.join(__dirname, 'utils', 'crop_prediction.py');
@@ -282,6 +308,66 @@ childPython.on('close',(code)=>{
 });
 
 })
+
+const fertilizerDic = {
+    NHigh: `The N value of soil is high and might give rise to weeds...`,
+    Nlow: `The N value of your soil is low...`,
+    PHigh: `The P value of your soil is high...`,
+    Plow: `The P value of your soil is low...`,
+    KHigh: `The K value of your soil is high...`,
+    Klow: `The K value of your soil is low...`
+  };
+  
+  function getCropValues(cropName) {
+    return new Promise((resolve, reject) => {
+      const results = [];
+      fs.createReadStream(path.join(__dirname, 'Data_csv', 'fertilizer.csv'))
+        .pipe(csv())
+        .on('data', (data) => results.push(data))
+        .on('end', () => {
+          const crop = results.find(row => row.Crop.toLowerCase() === cropName.toLowerCase());
+          if (crop) {
+            resolve({
+              N: parseInt(crop.N),
+              P: parseInt(crop.P),
+              K: parseInt(crop.K)
+            });
+          } else {
+            reject('Crop not found');
+          }
+        });
+    });
+  }
+  
+  app.post('/fertilizer-predict', async (req, res) => {
+    const { crop, N, P, K } = req.body;
+    try {
+      const { N: nr, P: pr, K: kr } = await getCropValues(cropname);
+      const N = parseInt(N);
+      const P = parseInt(P);
+      const K = parseInt(K);
+  
+      const nDiff = nr - N;
+      const pDiff = pr - P;
+      const kDiff = kr - K;
+  
+      const maxDiff = Math.max(Math.abs(nDiff), Math.abs(pDiff), Math.abs(kDiff));
+  
+      let key = '';
+      if (Math.abs(nDiff) === maxDiff) {
+        key = nDiff < 0 ? 'NHigh' : 'Nlow';
+      } else if (Math.abs(pDiff) === maxDiff) {
+        key = pDiff < 0 ? 'PHigh' : 'Plow';
+      } else {
+        key = kDiff < 0 ? 'KHigh' : 'Klow';
+      }
+  
+      res.send(`<h1>Fertilizer Recommendation</h1><p>${fertilizerDic[key]}</p>`);
+    } catch (error) {
+      res.status(500).send(`Error: ${error}`);
+    }
+  });
+
 
 
 app.use("/", userrouter );

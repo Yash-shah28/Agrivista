@@ -22,6 +22,14 @@ const profileSchema = new Schema({
     Photasium: {
         type: String,
     },
+    Fertilizer: {
+        type: String,
+
+    },
+    Pesticide: {
+        type: String,
+
+    },
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"

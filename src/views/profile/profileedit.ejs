@@ -24,8 +24,9 @@
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -101,69 +102,76 @@
 </head>
 
 <body>
-   
-
-              
-
-                <div class="container">
-                    <h1>Edit Profile</h1>
-                    <form action="/profile/<%= profile._id %>?_method=PUT" method="POST">
-
-                        <!-- Personal Information -->
-                        <div class="form-group">
-                            <label for="phone-number">Phone Number:</label>
-                            <input type="tel" id="phone-number" name="profile[number]" value="<%= profile.number %>">
-                        </div>
 
 
-                        <label>State & City:</label>
-                        <select id="state" name="profile[State]">
-                            <option value="<%= profile.State %>">
-                                <%= profile.State %>
-                            </option>
-                            <option value="Maharashtra">Maharashtra</option>
-                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                            <option value="Rajasthan">Rajasthan</option>
-                            <option value="Tamil Nadu">Tamil Nadu</option>
-                            <option value="Karnataka">Karnataka</option>
-                            <option value="Punjab">Punjab</option>
-                            <option value="West Bengal">West Bengal</option>
-                            <option value="Gujarat">Gujarat</option>
-                        </select>
-                        <select id="city" name="profile[city]">
-                            <option value="<%= profile.city %>">
-                                <%= profile.city %>
-                            </option>
-                            <option value="Delhi">Delhi</option>
-                            <option value="Mumbai">Mumbai</option>
-                            <option value="Bangalore">Bangalore</option>
-                            <option value="Chennai">Chennai</option>
-                            <option value="Kolkata">Kolkata</option>
-                            <option value="Hyderabad">Hyderabad</option>
-                            <option value="Pune">Pune</option>
-                            <option value="Ahmedabad">Ahmedabad</option>
-                            <option value="Jaipur">Jaipur</option>
-                            <option value="Kochi">Kochi</option>
-                        </select>
-
-                        <!-- Location Information -->
-                        <div class="form-group">
-                            <label for="Nitrogen">Nitrogen:</label>
-                            <input type="text" id="Nitrogen" name="profile[Nitrogen]" value="<%= profile.Nitrogen %>">
-
-                            <label for="Phosporous">Phosporous:</label>
-                            <input type="text" id="Phosporous" name="profile[Phosporous]" required
-                                value="<%= profile.Phosporous %>">
-
-                            <label for="Photasium">Photasium:</label>
-                            <input type="text" id="Photasium" name="profile[Photasium]" required
-                                value="<%= profile.Photasium %>">
-                        </div>
 
 
-                        <button>Submit Profile</button>
-                    </form>
-                </div>
+    <div class="container">
+        <h1>Edit Profile</h1>
+        <form action="/profile/<%= profile._id %>?_method=PUT" method="POST">
+
+            <!-- Personal Information -->
+            <div class="form-group">
+                <label for="phone-number">Phone Number:</label>
+                <input type="tel" id="phone-number" name="profile[number]" value="<%= profile.number %>">
+            </div>
+
+
+            <label>State & City:</label>
+            <select id="state" name="profile[State]">
+                <option value="<%= profile.State %>">
+                    <%= profile.State %>
+                </option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Punjab">Punjab</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Gujarat">Gujarat</option>
+            </select>
+            <select id="city" name="profile[city]">
+                <option value="<%= profile.city %>">
+                    <%= profile.city %>
+                </option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Kochi">Kochi</option>
+            </select>
+
+            <!-- Location Information -->
+            <div class="form-group">
+                <label for="Nitrogen">Nitrogen:</label>
+                <input type="text" id="Nitrogen" name="profile[Nitrogen]" value="<%= profile.Nitrogen %>">
+
+                <label for="Phosporous">Phosporous:</label>
+                <input type="text" id="Phosporous" name="profile[Phosporous]" required
+                    value="<%= profile.Phosporous %>">
+
+                <label for="Photasium">Photasium:</label>
+                <input type="text" id="Photasium" name="profile[Photasium]" required value="<%= profile.Photasium %>">
+
+                <label for="Photasium">Fertilizer:</label>
+                <input type="text" id="Photasium" name="profile[Fertilizer]" required value="<%= profile.Fertilizer %>">
+
+
+
+                <label for="Photasium">Pesticide:</label>
+                <input type="text" id="Pesticide" name="profile[Pesticide]" required value="<%= profile.Pesticide %>">
+            </div>
+
+
+            <button>Submit Profile</button>
+        </form>
+    </div>
 
 </body>
 <script src="js/jquery.min.js"></script>
