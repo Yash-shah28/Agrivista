@@ -72,9 +72,7 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="/crop_prediction">Crop Predictor</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="/fertilizer_prediction">Fertilizer  Predictor </a>
-                              </li>
+                              
                               <li class="nav-item">
                                  <a class="nav-link" href="/crop_yeild_predictor">Crop  Yield  Predictor</a>
                               </li>
@@ -92,7 +90,7 @@
                                    <% } %>
                                    <% if (currentUser) { %>
                                     <a class="dropdown-item" href="/logout">Logout</a>
-                                   <a class="dropdown-item" href="/profile">Profile</a>
+                                   <a class="dropdown-item" href="/showprofile">Profile</a>
                                    <% } %>
                                  </div>
                                </li>
@@ -117,21 +115,33 @@
         <form action="/predict" method="post" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="N" class="form-label">Nitrogen</label>
-                <input type="text" id="N" name="N" class="form-control" required>
+                <input type="text" id="N" name="N" class="form-control"
+                <% if (curruser) { %>
+                  value = "<%= allprofile.Nitrogen  %>"
+                  <%}%>
+                required>
                 <div class="invalid-feedback">
                     Please enter a valid N.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="P" class="form-label">Phosporous</label>
-                <input type="text" id="P" name="P" class="form-control" required>
+                <input type="text" id="P" name="P" class="form-control" 
+                <% if (curruser) { %>
+                  value = "<%= allprofile.Phosporous  %>"
+                  <%}%>
+                required>
                 <div class="invalid-feedback">
                     Please enter a valid Phosporous.
                 </div>
             </div>
             <div class="mb-3">
                 <label for="K" class="form-label">Photasium</label>
-                <input type="text" id="K" name="K" class="form-control" required>
+                <input type="text" id="K" name="K" class="form-control" 
+                <% if (curruser) { %>
+                  value = "<%= allprofile.Photasium  %>"
+                  <%}%>
+                required>
                 <div class="invalid-feedback">
                     Please enter a valid N.
                 </div>
@@ -176,4 +186,38 @@
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
+      <script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    const N = parseFloat(document.getElementById('N').value) || 0;
+    const P = parseFloat(document.getElementById('P').value) || 0;
+    const K = parseFloat(document.getElementById('K').value) || 0;
+    const temperature = parseFloat(document.getElementById('temperature').value) || 0;
+    const humidity = parseFloat(document.getElementById('humidity').value) || 0;
+    const ph = parseFloat(document.getElementById('ph').value) || 0;
+    const rainfall = parseFloat(document.getElementById('rainfall').value) || 0;
+
+    // Check if all values are 0
+    if (
+        N === 0 &&
+        P === 0 &&
+        K === 0 &&
+        temperature === 0 &&
+        humidity === 0 &&
+        ph === 0 &&
+        rainfall === 0
+    ) {
+        event.preventDefault();
+        alert('All values cannot be zero. Please enter valid data.');
+        return;
+    }
+
+    // Check if any of N, P, K are 0
+    if (N === 0 || P === 0 || K === 0) {
+        event.preventDefault();
+        alert('N, P, and K values cannot be zero. Please enter valid nutrient values.');
+        return;
+    }
+});
+</script>
+
 </html>

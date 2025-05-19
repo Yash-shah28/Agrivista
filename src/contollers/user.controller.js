@@ -1,4 +1,5 @@
 import User from '../models/user.model.js'
+import Profile from '../models/profile.model.js'
 import wrapAsync from '../utils/wrapAsync.js'
 
 export const login = (req,res) =>{
@@ -14,12 +15,12 @@ export  const saveSignup = wrapAsync(async (req,res) =>{
         let {username,password,email} = req.body;
     const newUser = new User({username,email});
     const registeredUser = await User.register(newUser,password);
-    req.login(registeredUser,(err)=>{
+    req.login(registeredUser,async (err)=>{
         if(err){
             return next(err);
         }
         req.flash("success","Welcome To Agrivista")
-     res.redirect('/');
+        res.redirect('/profile');
     })
     } catch (e) {
         req.flash("error",e.message)
