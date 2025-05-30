@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "Agrivista": "file:",
+    "axios": "^1.9.0",
     "connect-flash": "^0.1.1",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.4.6",
